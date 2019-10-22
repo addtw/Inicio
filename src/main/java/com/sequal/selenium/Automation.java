@@ -37,37 +37,24 @@ public class Automation {
         }
         try {
             if (vars != null && vars.getString("SHIPTO") != null && vars.getString("SEQ") != null) {
-//                JOptionPane.showConfirmDialog(null, vars.getString("SEQ"));
-                runAutomationCedi(getDriver(), vars.getString("SHIPTO"), vars.getString("SEQ"));
+                ChromeDriver driver = getDriver();
+                runAutomationCedi(driver, vars.getString("SHIPTO"), vars.getString("SEQ"));
+                close(driver, false, "");
             }
         } catch (Exception e) {
-//            e.printStackTrace();
-//            JOptionPane.showMessageDialog(null, "Error en JAR: " + e.getLocalizedMessage());
+            
         }
 
     }
 
-    private static ChromeDriver getDriver() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars");
-        options.addArguments("--start-maximized");
-        options.addArguments("--ignore-certificate-errors");
-        if (vars != null && vars.getString("HEADLESS") != null && vars.getString("HEADLESS").equals("TRUE")) {
-            options.addArguments("--headless");
-        }
-        ChromeDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        return driver;
-    }
+    
 
     
     private static void runAutomationCedi(ChromeDriver driver, String SHIPTO, String SEQ) {
         driver.get("http://wmsappqa1.grupo-exito.com/scqa/sce/sceapp.ctrl");
 
         
-        close(driver, false, "");
-
+        
         
     }
 
@@ -147,5 +134,17 @@ public class Automation {
         } catch (Exception e) {
         }
     }
-
+private static ChromeDriver getDriver() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("disable-infobars");
+        options.addArguments("--start-maximized");
+        options.addArguments("--ignore-certificate-errors");
+        if (vars != null && vars.getString("HEADLESS") != null && vars.getString("HEADLESS").equals("TRUE")) {
+            options.addArguments("--headless");
+        }
+        ChromeDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        return driver;
+    }
 }
