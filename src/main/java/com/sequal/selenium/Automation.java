@@ -56,56 +56,16 @@ public class Automation {
         if (vars != null && vars.getString("HEADLESS") != null && vars.getString("HEADLESS").equals("TRUE")) {
             options.addArguments("--headless");
         }
-//        options.addArguments("--disable-gpu");
         ChromeDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return driver;
     }
 
-    private static void sleep(long mil) {
-        try {
-            Thread.sleep(mil);
-        } catch (Exception e) {
-        }
-    }
-
+    
     private static void runAutomationCedi(ChromeDriver driver, String SHIPTO, String SEQ) {
         driver.get("http://wmsappqa1.grupo-exito.com/scqa/sce/sceapp.ctrl");
 
-        findElementByXPath(driver, "//*[@id=\"Iujgbo2\"]").sendKeys("t-zvargas");
-
-        findElementByXPath(driver, "//*[@id=\"I604i25\"]").sendKeys("zulavasi555+");
-
-        clickByXpath(driver, "//*[@id=\"$l6fjoa\"]");
         
-        clickByXpath(driver, "//*[@id=\"$cw862c_image\"]");
-
-        clickByXpath(driver, "/html/body/form/div[2]/span[2]/div/div/table/tbody/tr/td/div[9]/table/tbody/tr/td[1]/div/div");
-
-        clickByXpath(driver, "//*[@id=\"$jniyz2_arrow\"]");
-
-        clickByXpath(driver, "//*[@id=\"toggle_$moj83l_image\"]");
-
-        clickByXpath(driver, "//*[@id=\"$ohi6s9\"]/div/table/tbody/tr/td/div/ul/li");
-        
-        clickByXpath(driver, "//*[@id=\"$sdwcs9_filterbutton\"]");
-        
-//        clickByXpath(driver, "//*[@id=\"$sdwcs9_cell_1_0_Img\"]");//TEXT1
-        clickByXpath(driver, "//*[@id=\"$sdwcs9_cell_2_0_Img\"]");//camiar este paso solamente
-        
-        clickByXpath(driver, "//*[@id=\"As3jlst_label\"]");
-        
-        sendKEYSByXpath(driver, "//*[@id=\"Iti99ft\"]", SHIPTO);
-//        findElementByXPath(driver, "//*[@id=\"Iti99ft\"]").sendKeys(SHIPTO);
-        sendKEYSByXpath(driver, "//*[@id=\"Ibvdx9h\"]", SHIPTO);
-//        findElementByXPath(driver, "//*[@id=\"Ibvdx9h\"]").sendKeys(SHIPTO);
-        sleep(2000);
-        sendKEYSByXpath(driver, "//*[@id=\"Io4hrs5\"]", SEQ);
-//        findElementByXPath(driver, "//*[@id=\"Io4hrs5\"]").sendKeys(SEQ);
-        
-        clickByXpath(driver, "//*[@id=\"A4qglj7_label\"]");
-//        sleep(1000);
-        findElementByXPath(driver, "//*[@id=\"$tykn4z_label\"]");
         close(driver, false, "");
 
         
@@ -180,4 +140,12 @@ public class Automation {
         }
         System.exit(0);
     }
+    
+    private static void sleep(long mil) {
+        try {
+            Thread.sleep(mil);
+        } catch (Exception e) {
+        }
+    }
+
 }
