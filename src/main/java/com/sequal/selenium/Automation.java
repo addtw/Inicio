@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
  *
  * @author rent-com
  */
-public class AutomationCedi {
+public class Automation {
 
     static boolean error = false;
     static String result = "";
